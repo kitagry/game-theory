@@ -77,9 +77,10 @@ func NewTipForTat() *TipForTat {
 }
 
 func (t *TipForTat) Input(i Value) {
-	if i == Betray {
+	switch i {
+	case Betray:
 		t.betrayed = true
-	} else if i == Trust {
+	case Trust:
 		t.betrayed = false
 	}
 }
