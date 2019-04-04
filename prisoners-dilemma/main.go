@@ -39,6 +39,28 @@ func (r RandomPerson) Output() Value {
 	return values[rand.Intn(len(values))]
 }
 
+type GrimTrigger struct {
+	betrayed bool
+}
+
+func NewGrimTrigger() *GrimTrigger {
+	return &GrimTrigger{betrayed: false}
+}
+
+func (g *GrimTrigger) Input(i Value) {
+	if i == Betray {
+		g.betrayed = true
+	}
+}
+
+func (g *GrimTrigger) Output() Value {
+	if g.betrayed {
+		return Betray
+	} else {
+		return Trust
+	}
+}
+
 func Game(times int, p1, p2 Person) {
 	p1Score := 0
 	p2Score := 0
@@ -59,7 +81,7 @@ func Game(times int, p1, p2 Person) {
 
 func main() {
 	p1 := RandomPerson{}
-	p2 := RandomPerson{}
+	p2 := NewGrimTrigger()
 
 	Game(10, p1, p2)
 }
