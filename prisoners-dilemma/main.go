@@ -31,6 +31,20 @@ type Person interface {
 	Output() Value
 }
 
+type Betrayer struct {
+}
+
+func NewBetrayer() *Betrayer {
+	return &Betrayer{}
+}
+
+func (b *Betrayer) Input(i Value) {
+}
+
+func (b *Betrayer) Output() Value {
+	return Betray
+}
+
 type RandomPerson struct {
 }
 
@@ -114,10 +128,12 @@ func PlayGame(times int, p1, p2 Person) {
 
 func GetPerson(i int) (Person, error) {
 	if i == 0 {
-		return NewRandom(), nil
+		return NewBetrayer(), nil
 	} else if i == 1 {
-		return NewGrimTrigger(), nil
+		return NewRandom(), nil
 	} else if i == 2 {
+		return NewGrimTrigger(), nil
+	} else if i == 3 {
 		return NewTipForTat(), nil
 	} else {
 		return nil, errors.New("値が不正です.")
@@ -126,8 +142,8 @@ func GetPerson(i int) (Person, error) {
 
 func main() {
 	times := flag.Int("n", 10, "Number of game attempts")
-	p1Int := flag.Int("p1", 0, "Player1's Algorithm, 0: random, 1: Grim Trigger, 2: Tip for tat")
-	p2Int := flag.Int("p2", 1, "Player2's Algorithm, 0: random, 1: Grim Trigger, 2: Tip for tat")
+	p1Int := flag.Int("p1", 0, "Player1's Algorithm, 0: betray, 1: random, 2: Grim Trigger, 3: Tip for tat")
+	p2Int := flag.Int("p2", 1, "Player2's Algorithm, 0: betray, 1: random, 2: Grim Trigger, 3: Tip for tat")
 	flag.Parse()
 
 	p1, err := GetPerson(*p1Int)

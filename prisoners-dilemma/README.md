@@ -35,15 +35,16 @@ Usage of ./prisoners-dilemma:
   -n int
         Number of game attempts (default 10)
   -p1 int
-        Player1's Algorithm, 0: random, 1: Grim Trigger, 2: Tip for tat
+        Player1's Algorithm, 0: betray, 1: random, 2: Grim Trigger, 3: Tip for tat
   -p2 int
-        Player2's Algorithm, 0: random, 1: Grim Trigger, 2: Tip for tat (default 1)
+        Player2's Algorithm, 0: betray, 1: random, 2: Grim Trigger, 3: Tip for tat (default 1)
 ```
 
 ## Algorithm
 
 | | 説明 |
 |:--:|:--:|
+| Betray | 常に裏切る |
 | Random | ランダムで裏切る |
 | Grim Trigger | 相手が裏切るまで裏切らない.一度裏切れば、ずっと裏切る |
 | Tip for tat | 相手が前回裏切っていたら、裏切る.それ以外では裏切らない. |
