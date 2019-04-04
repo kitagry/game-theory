@@ -124,6 +124,7 @@ func GetPerson(i int) (Person, error) {
 }
 
 func main() {
+	times := flag.Int("n", 10, "Number of game attempts")
 	p1Int := flag.Int("p1", 0, "Player1's Algorithm, 0: random, 1: Grim Trigger, 2: Tip for tat")
 	p2Int := flag.Int("p2", 1, "Player2's Algorithm, 0: random, 1: Grim Trigger, 2: Tip for tat")
 	flag.Parse()
@@ -138,5 +139,5 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	PlayGame(10, p1, p2)
+	PlayGame(*times, p1, p2)
 }
