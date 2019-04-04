@@ -65,7 +65,32 @@ func (g *GrimTrigger) Output() Value {
 	}
 }
 
-func Game(times int, p1, p2 Person) {
+type TipForTat struct {
+	betrayed bool
+}
+
+func NewTipForTat() *TipForTat {
+	return &TipForTat{betrayed: false}
+}
+
+func (t *TipForTat) Input(i Value) {
+	if i == Betray {
+		t.betrayed = true
+	} else if i == Trust {
+		t.betrayed = false
+	}
+}
+
+func (t *TipForTat) Output() Value {
+	if t.betrayed {
+		return Betray
+	} else {
+		return Trust
+	}
+}
+
+// PlayGame run game
+func PlayGame(times int, p1, p2 Person) {
 	p1Score := 0
 	p2Score := 0
 	for i := 0; i < times; i++ {
@@ -84,8 +109,8 @@ func Game(times int, p1, p2 Person) {
 }
 
 func main() {
-	p1 := NewRandom()
-	p2 := NewGrimTrigger()
+	p1 := NewTipForTat()
+	p2 := NewTipForTat()
 
-	Game(10, p1, p2)
+	PlayGame(10, p1, p2)
 }
