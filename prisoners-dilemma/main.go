@@ -1,7 +1,10 @@
 package main
 
 import (
+	"errors"
+	"flag"
 	"fmt"
+	"log"
 	"math/rand"
 	"time"
 )
@@ -108,9 +111,32 @@ func PlayGame(times int, p1, p2 Person) {
 	fmt.Printf("Player2's score is %d\n", p2Score)
 }
 
+func GetPerson(i int) (Person, error) {
+	if i == 0 {
+		return NewRandom(), nil
+	} else if i == 1 {
+		return NewGrimTrigger(), nil
+	} else if i == 2 {
+		return NewTipForTat(), nil
+	} else {
+		return nil, errors.New("値が不正です.")
+	}
+}
+
 func main() {
-	p1 := NewTipForTat()
-	p2 := NewTipForTat()
+	p1Int := flag.Int("p1", 0, "0: random, 1: Grim Trigger, 2: Tip for tat")
+	p2Int := flag.Int("p2", 1, "0: random, 1: Grim Trigger, 2: Tip for tat")
+	flag.Parse()
+
+	p1, err := GetPerson(*p1Int)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	p2, err := GetPerson(*p2Int)
+	if err != nil {
+		log.Fatalln(err)
+	}
 
 	PlayGame(10, p1, p2)
 }
