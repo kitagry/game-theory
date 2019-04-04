@@ -31,10 +31,14 @@ type Person interface {
 type RandomPerson struct {
 }
 
-func (r RandomPerson) Input(i Value) {
+func NewRandom() *RandomPerson {
+	return &RandomPerson{}
 }
 
-func (r RandomPerson) Output() Value {
+func (r *RandomPerson) Input(i Value) {
+}
+
+func (r *RandomPerson) Output() Value {
 	rand.Seed(time.Now().UnixNano())
 	return values[rand.Intn(len(values))]
 }
@@ -80,7 +84,7 @@ func Game(times int, p1, p2 Person) {
 }
 
 func main() {
-	p1 := RandomPerson{}
+	p1 := NewRandom()
 	p2 := NewGrimTrigger()
 
 	Game(10, p1, p2)
