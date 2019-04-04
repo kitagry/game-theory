@@ -124,8 +124,8 @@ func GetPerson(i int) (Person, error) {
 }
 
 func main() {
-	p1Int := flag.Int("p1", 0, "0: random, 1: Grim Trigger, 2: Tip for tat")
-	p2Int := flag.Int("p2", 1, "0: random, 1: Grim Trigger, 2: Tip for tat")
+	p1Int := flag.Int("p1", 0, "Player1's Algorithm, 0: random, 1: Grim Trigger, 2: Tip for tat")
+	p2Int := flag.Int("p2", 1, "Player2's Algorithm, 0: random, 1: Grim Trigger, 2: Tip for tat")
 	flag.Parse()
 
 	p1, err := GetPerson(*p1Int)
