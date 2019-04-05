@@ -53,7 +53,7 @@ Usage of ./prisoners-dilemma:
 
 | 自分のアルゴリズム \ 相手のアルゴリズム| Betray | Random | Grim Trigger | Tip for Tat |
 |:--:|:--:|:--:|:--:|:--:|
-| Betray | 10 | 30 | 14 | 14 |
-| Random | 5 | 25 | 40 | 22 |
-| Grim Trigger | 9 | 34 | 14 | 14 |
-| Tip for Tat | 9 | 29 | 40 | 40 |
+| Betray | 10 | 26 | 14 | 14 |
+| Random | 7 | 23 | 13 | 32 |
+| Grim Trigger | 9 | 25 | 40 | 40 |
+| Tip for Tat | 9 | 27 | 40 | 40 |

@@ -178,6 +178,11 @@ func CompareAll() {
 		resultTable += fmt.Sprintf("| %s | ", p1.GetAlgorithm())
 
 		for j := 0; j < 4; j++ {
+			p1, err := GetPerson(i)
+			if err != nil {
+				return
+			}
+
 			p2, err := GetPerson(j)
 			if err != nil {
 				return
