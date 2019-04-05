@@ -51,9 +51,9 @@ Usage of ./prisoners-dilemma:
 
 ## Result
 
-|| Betray | Random | Grim trigger | Tip for tat |
+| 自分のアルゴリズム \ 相手のアルゴリズム| Betray | Random | Grim Trigger | Tip for Tat |
 |:--:|:--:|:--:|:--:|:--:|
-|    Betray   | 10 | 34 | 14 | 14 |
-|    Random   | 8 | 18 | 16 | 25 |
-| Grim trigger| 9 | 28 | 40 | 40 |
-| Tip for tat | 9 | 28 | 40 | 40 |
+| Betray | 10 | 30 | 14 | 14 |
+| Random | 5 | 25 | 40 | 22 |
+| Grim Trigger | 9 | 34 | 14 | 14 |
+| Tip for Tat | 9 | 29 | 40 | 40 |

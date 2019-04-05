@@ -158,7 +158,7 @@ func GetPerson(i int) (Person, error) {
 }
 
 func CompareAll() {
-	resultTable := "|"
+	resultTable := "| 自分のアルゴリズム \\ 相手のアルゴリズム"
 	for i := 0; i < 4; i++ {
 		p, err := GetPerson(i)
 		if err != nil {
