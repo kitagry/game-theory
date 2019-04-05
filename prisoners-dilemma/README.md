@@ -35,9 +35,9 @@ Usage of ./prisoners-dilemma:
   -n int
         Number of game attempts (default 10)
   -p1 int
-        Player1's Algorithm, 0: betray, 1: random, 2: Grim Trigger, 3: Tip for tat
+        Player1's Algorithm, 0: betray, 1: trust, 2: random, 3: Grim Trigger, 4: Tip for tat
   -p2 int
-        Player2's Algorithm, 0: betray, 1: random, 2: Grim Trigger, 3: Tip for tat (default 1)
+        Player2's Algorithm, 0: betray, 1: trust, 2: random, 3: Grim Trigger, 4: Tip for tat (default 1)
 ```
 
 ## Algorithm
@@ -45,15 +45,17 @@ Usage of ./prisoners-dilemma:
 | | 説明 |
 |:--:|:--:|
 | Betray | 常に裏切る |
+| Trust  | 常に信じる |
 | Random | ランダムで裏切る |
 | Grim Trigger | 相手が裏切るまで裏切らない.一度裏切れば、ずっと裏切る |
 | Tip for tat | 相手が前回裏切っていたら、裏切る.それ以外では裏切らない. |
 
 ## Result
 
-| 自分のアルゴリズム \ 相手のアルゴリズム| Betray | Random | Grim Trigger | Tip for Tat |
+| 自分のアルゴリズム \ 相手のアルゴリズム| Betray | Trust | Random | Grim Trigger | Tip for Tat |
 |:--:|:--:|:--:|:--:|:--:|
-| Betray | 10 | 26 | 14 | 14 |
-| Random | 7 | 23 | 13 | 32 |
-| Grim Trigger | 9 | 25 | 40 | 40 |
-| Tip for Tat | 9 | 27 | 40 | 40 |
+| Betray | 10 | 50 | 26 | 14 | 14 |
+| Trust | 0 | 40 | 20 | 40 | 40 |
+| Random | 5 | 44 | 29 | 9 | 26 |
+| Grim Trigger | 9 | 40 | 29 | 40 | 40 |
+| Tip for Tat | 9 | 40 | 22 | 40 | 40 |

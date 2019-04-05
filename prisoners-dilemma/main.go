@@ -51,6 +51,24 @@ func (b *Betrayer) Output() Value {
 	return Betray
 }
 
+type Truster struct {
+}
+
+func NewTruster() *Truster {
+	return &Truster{}
+}
+
+func (t *Truster) GetAlgorithm() string {
+	return "Trust"
+}
+
+func (t *Truster) Input(i Value) {
+}
+
+func (t *Truster) Output() Value {
+	return Trust
+}
+
 type RandomPerson struct {
 }
 
@@ -147,10 +165,12 @@ func GetPerson(i int) (Person, error) {
 	if i == 0 {
 		return NewBetrayer(), nil
 	} else if i == 1 {
-		return NewRandom(), nil
+		return NewTruster(), nil
 	} else if i == 2 {
-		return NewGrimTrigger(), nil
+		return NewRandom(), nil
 	} else if i == 3 {
+		return NewGrimTrigger(), nil
+	} else if i == 4 {
 		return NewTipForTat(), nil
 	} else {
 		return nil, errors.New("値が不正です.")
@@ -158,8 +178,9 @@ func GetPerson(i int) (Person, error) {
 }
 
 func CompareAll() {
+	const algorithmNum = 5
 	resultTable := "| 自分のアルゴリズム \\ 相手のアルゴリズム"
-	for i := 0; i < 4; i++ {
+	for i := 0; i < algorithmNum; i++ {
 		p, err := GetPerson(i)
 		if err != nil {
 			return
@@ -169,7 +190,7 @@ func CompareAll() {
 	resultTable += "|\n"
 
 	resultTable += "|:--:|:--:|:--:|:--:|:--:|\n"
-	for i := 0; i < 4; i++ {
+	for i := 0; i < algorithmNum; i++ {
 		p1, err := GetPerson(i)
 		if err != nil {
 			return
@@ -177,7 +198,7 @@ func CompareAll() {
 
 		resultTable += fmt.Sprintf("| %s | ", p1.GetAlgorithm())
 
-		for j := 0; j < 4; j++ {
+		for j := 0; j < algorithmNum; j++ {
 			p1, err := GetPerson(i)
 			if err != nil {
 				return
@@ -197,8 +218,8 @@ func CompareAll() {
 
 func main() {
 	times := flag.Int("n", 10, "Number of game attempts")
-	p1Int := flag.Int("p1", 0, "Player1's Algorithm, 0: betray, 1: random, 2: Grim Trigger, 3: Tip for tat")
-	p2Int := flag.Int("p2", 1, "Player2's Algorithm, 0: betray, 1: random, 2: Grim Trigger, 3: Tip for tat")
+	p1Int := flag.Int("p1", 0, "Player1's Algorithm, 0: betray, 1: trust, 2: random, 3: Grim Trigger, 4: Tip for tat")
+	p2Int := flag.Int("p2", 1, "Player2's Algorithm, 0: betray, 1: trust, 2: random, 3: Grim Trigger, 4: Tip for tat")
 	playSingle := flag.Bool("o", true, "Play single play or not")
 	flag.Parse()
 
