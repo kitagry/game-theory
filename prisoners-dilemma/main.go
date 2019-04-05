@@ -189,7 +189,12 @@ func CompareAll() {
 	}
 	resultTable += "|\n"
 
-	resultTable += "|:--:|:--:|:--:|:--:|:--:|\n"
+	resultTable += "|"
+	for i := 0; i < algorithmNum; i++ {
+		resultTable += ":--:|"
+	}
+	resultTable += "\n"
+
 	for i := 0; i < algorithmNum; i++ {
 		p1, err := GetPerson(i)
 		if err != nil {

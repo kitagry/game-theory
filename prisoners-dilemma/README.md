@@ -59,3 +59,4 @@ Usage of ./prisoners-dilemma:
 | Random | 5 | 44 | 29 | 9 | 26 |
 | Grim Trigger | 9 | 40 | 29 | 40 | 40 |
 | Tip for Tat | 9 | 40 | 22 | 40 | 40 |
+
