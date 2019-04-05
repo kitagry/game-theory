@@ -49,3 +49,11 @@ Usage of ./prisoners-dilemma:
 | Grim Trigger | 相手が裏切るまで裏切らない.一度裏切れば、ずっと裏切る |
 | Tip for tat | 相手が前回裏切っていたら、裏切る.それ以外では裏切らない. |
 
+## Result
+
+|| Betray | Random | Grim trigger | Tip for tat |
+|:--:|:--:|:--:|:--:|:--:|
+|    Betray   | 10 | 34 | 14 | 14 |
+|    Random   | 8 | 18 | 16 | 25 |
+| Grim trigger| 9 | 28 | 40 | 40 |
+| Tip for tat | 9 | 28 | 40 | 40 |

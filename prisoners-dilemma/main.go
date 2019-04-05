@@ -27,6 +27,8 @@ var (
 )
 
 type Person interface {
+	GetAlgorithm() string
+
 	Input(i Value)
 	Output() Value
 }
@@ -36,6 +38,10 @@ type Betrayer struct {
 
 func NewBetrayer() *Betrayer {
 	return &Betrayer{}
+}
+
+func (b *Betrayer) GetAlgorithm() string {
+	return "Betray"
 }
 
 func (b *Betrayer) Input(i Value) {
@@ -52,6 +58,10 @@ func NewRandom() *RandomPerson {
 	return &RandomPerson{}
 }
 
+func (r *RandomPerson) GetAlgorithm() string {
+	return "Random"
+}
+
 func (r *RandomPerson) Input(i Value) {
 }
 
@@ -66,6 +76,10 @@ type GrimTrigger struct {
 
 func NewGrimTrigger() *GrimTrigger {
 	return &GrimTrigger{betrayed: false}
+}
+
+func (g *GrimTrigger) GetAlgorithm() string {
+	return "Grim Trigger"
 }
 
 func (g *GrimTrigger) Input(i Value) {
@@ -90,6 +104,10 @@ func NewTipForTat() *TipForTat {
 	return &TipForTat{betrayed: false}
 }
 
+func (t *TipForTat) GetAlgorithm() string {
+	return "Tip for Tat"
+}
+
 func (t *TipForTat) Input(i Value) {
 	switch i {
 	case Betray:
@@ -108,7 +126,7 @@ func (t *TipForTat) Output() Value {
 }
 
 // PlayGame run game
-func PlayGame(times int, p1, p2 Person) {
+func PlayGame(times int, p1, p2 Person) (int, int) {
 	p1Score := 0
 	p2Score := 0
 	for i := 0; i < times; i++ {
@@ -122,8 +140,7 @@ func PlayGame(times int, p1, p2 Person) {
 		p2.Input(p1Answer)
 	}
 
-	fmt.Printf("Player1's score is %d\n", p1Score)
-	fmt.Printf("Player2's score is %d\n", p2Score)
+	return p1Score, p2Score
 }
 
 func GetPerson(i int) (Person, error) {
@@ -140,21 +157,61 @@ func GetPerson(i int) (Person, error) {
 	}
 }
 
+func CompareAll() {
+	resultTable := "|"
+	for i := 0; i < 4; i++ {
+		p, err := GetPerson(i)
+		if err != nil {
+			return
+		}
+		resultTable += fmt.Sprintf("| %s ", p.GetAlgorithm())
+	}
+	resultTable += "|\n"
+
+	resultTable += "|:--:|:--:|:--:|:--:|:--:|\n"
+	for i := 0; i < 4; i++ {
+		p1, err := GetPerson(i)
+		if err != nil {
+			return
+		}
+
+		resultTable += fmt.Sprintf("| %s | ", p1.GetAlgorithm())
+
+		for j := 0; j < 4; j++ {
+			p2, err := GetPerson(j)
+			if err != nil {
+				return
+			}
+			p1Score, _ := PlayGame(10, p1, p2)
+			resultTable += fmt.Sprint(p1Score) + " | "
+		}
+		resultTable += "\n"
+	}
+	fmt.Print(resultTable)
+}
+
 func main() {
 	times := flag.Int("n", 10, "Number of game attempts")
 	p1Int := flag.Int("p1", 0, "Player1's Algorithm, 0: betray, 1: random, 2: Grim Trigger, 3: Tip for tat")
 	p2Int := flag.Int("p2", 1, "Player2's Algorithm, 0: betray, 1: random, 2: Grim Trigger, 3: Tip for tat")
+	playSingle := flag.Bool("o", true, "Play single play or not")
 	flag.Parse()
 
-	p1, err := GetPerson(*p1Int)
-	if err != nil {
-		log.Fatalln(err)
-	}
+	if *playSingle {
+		p1, err := GetPerson(*p1Int)
+		if err != nil {
+			log.Fatalln(err)
+		}
 
-	p2, err := GetPerson(*p2Int)
-	if err != nil {
-		log.Fatalln(err)
-	}
+		p2, err := GetPerson(*p2Int)
+		if err != nil {
+			log.Fatalln(err)
+		}
 
-	PlayGame(*times, p1, p2)
+		p1Score, p2Score := PlayGame(*times, p1, p2)
+		fmt.Printf("Player1's (%s) score is %d\n", p1.GetAlgorithm(), p1Score)
+		fmt.Printf("Player2's (%s) score is %d\n", p2.GetAlgorithm(), p2Score)
+	} else {
+		CompareAll()
+	}
 }
