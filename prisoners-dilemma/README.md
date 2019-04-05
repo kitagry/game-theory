@@ -53,10 +53,10 @@ Usage of ./prisoners-dilemma:
 ## Result
 
 | 自分のアルゴリズム \ 相手のアルゴリズム| Betray | Trust | Random | Grim Trigger | Tip for Tat |
-|:--:|:--:|:--:|:--:|:--:|
-| Betray | 10 | 50 | 22 | 14 | 14 |
-| Trust | 0 | 40 | 28 | 40 | 40 |
-| Random | 5 | 46 | 25 | 12 | 23 |
-| Grim Trigger | 9 | 40 | 33 | 40 | 40 |
-| Tip for Tat | 9 | 40 | 25 | 40 | 40 |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| Betray | 10 | 50 | 30 | 14 | 14 |
+| Trust | 0 | 40 | 24 | 40 | 40 |
+| Random | 3 | 43 | 23 | 18 | 29 |
+| Grim Trigger | 9 | 40 | 41 | 40 | 40 |
+| Tip for Tat | 9 | 40 | 22 | 40 | 40 |
 

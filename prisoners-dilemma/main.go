@@ -190,7 +190,7 @@ func CompareAll() {
 	resultTable += "|\n"
 
 	resultTable += "|"
-	for i := 0; i < algorithmNum; i++ {
+	for i := 0; i < algorithmNum+1; i++ {
 		resultTable += ":--:|"
 	}
 	resultTable += "\n"
